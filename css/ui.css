@@ -1,0 +1,136 @@
+#gamefield {
+    position: relative;
+    box-sizing: border-box;
+    display: block;
+    background-color: #999999;
+    border: 2px solid black;
+    width: 604px;
+    height: 730px;
+}
+
+#droparea {
+    margin: 0 auto;
+    padding-top: 126px;
+}
+
+.draggable,
+.droppable {
+    border: 1px solid black;
+    width: 120px;
+    height: 120px;
+    background-color: lightgray;
+}
+
+    div.bg_size{
+        background-size: 420px;
+        height: 120px;
+        width: 120px;
+        background: url(../img/000.jpg);
+        position: absolute;
+    }
+    .quantity1{
+        left: 5px;
+    }
+    div.bg_size{
+        top: 3px;
+    }
+    div.quantity2 {
+        left: 20px;
+    }
+    div.quantity3 {
+        left: 35px;
+    }
+    div.quantity4 {
+        left: 50px;
+    }
+    div.quantity5 {
+        left: 65px;
+    }
+    div.quantity6 {
+        left: 80px;
+    }
+    div.quantity7 {
+        left: 95px;
+    }
+    div.quantity8 {
+        left: 110px;
+    }
+    div.quantity9 {
+        left: 125px;
+    }
+    div.quantity10 {
+        left: 140px;
+    }
+    div.quantity11 {
+        left: 155px;
+    }
+    div.quantity12 {
+        left: 170px;
+    }
+    div.quantity13 {
+        left: 185px;
+    }
+    div.quantity14 {
+        left: 200px;
+    }
+    div.quantity15 {
+        left: 215px;
+    }
+    div.quantity16 {
+        left: 230px;
+    }
+    div.quantity17 {
+        left: 245px;
+    }
+    div.quantity18 {
+        left: 260px;
+    }
+    div.quantity19 {
+        left: 275px;
+    }
+    div.quantity20 {
+        left: 290px;
+    }
+    div.quantity21 {
+        left: 305px;
+    }
+    div.quantity22 {
+        left: 320px;
+    }
+    div.quantity23 {
+        left: 335px;
+    }
+    div.quantity24 {
+        left: 350px;
+    }
+    div.quantity25 {
+        left: 365px;
+    }
+    @media all and (max-width: 768px){
+        div.bg_size,
+        div.bg_size,
+        div.bg_size{
+            background-size: 300px;
+        }
+        div{
+            min-height: 100px;
+        }
+        div{
+            min-height: 75px;
+        }
+        div{
+            min-height: 60px;
+        }
+    }
+    @media all and (max-width: 320px){
+        #tree{
+            margin: 0;
+        }
+        .container{
+            margin: 0;
+            padding: 0;
+        }
+        .row{
+            margin-left: -20px;
+        }
+    }

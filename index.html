@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Nude Puzzle</title>
+    <!-- Bootstrap plugin -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Crop css -->
+    <link rel="stylesheet" href="./css/jQcrop.css">
+    <!-- Jquerry UI plugin -->
+    <link type="text/css" href="./css/jquery-ui.css" rel="Stylesheet" />
+    <link rel="stylesheet" href="./css/ui.css">
+    <!-- Main CSS file -->
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel='shortcut icon' type='image/x-icon' href='./img/favicon.ico'>
+</head>
+<body>
+	<div class="wrapper_preloader bg-primary">
+		<div class="povered">Povered By jQuery UI</div>
+		<div class="spinner-border text-warning" role="status">
+		  <span class="sr-only">Loading...</span>
+		</div>
+	</div>
+	<div class="wrapper_preloader bg-warning">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 mx-auto">
+					<h2>Game #1</h2>
+					<h1>Nude Puzzle</h1>
+					<h5 class="demoHeaders">Short instruction:</h5>
+					<div id="accordion">
+						<h3>First</h3>
+						<div>Press button below, and choice your hard level</div>
+						<h3>Second</h3>
+						<div>Choice your image (our Sexy image or from your PC)</div>
+						<h3>Third</h3>
+						<div>Crop image and push "Play"</div>
+						<h3>Fourth</h3>
+						<div>Enjoy with play game (using mouse on PC)</div>
+						<h3>Fifth</h3>
+						<div>Share our link to your friends</div>
+					</div>
+					<h5 class="demoHeaders mx-auto">Choice difficulty</h5>
+					<form class="mx-auto">
+						<div id="radioset" class="pulse">
+							<input type="radio" id="radio1" name="radio" value="3"><label for="radio1">Easy</label>
+							<input type="radio" id="radio2" name="radio" value="4"><label for="radio2">Normal</label>
+							<input type="radio" id="radio3" name="radio" value="5"><label for="radio3">Hard</label>
+						</div>
+					</form>
+					<form style="margin-top: 1em" class="mx-auto">
+						<h5>Please, select our or load your image =)</h5>
+					  <div class="form-group">
+					  	<button id="sexy_image" class="btn btn-primary m-3" disabled="disabled" type="button">Sexy IMG</button>
+					  	<div class="wrapper_border">
+				  			<label class="custom-file-upload m-3">
+				  			    <input id="upload_img" type="file" class="form-control-file">
+				  			    Custom Upload
+				  			</label>
+				  		  <button id="confirm" class="btn btn-success m-3" type="button" disabled="disabled">Prepare Image</button>
+					  	</div>
+					  </div>
+					</form>
+				</div>
+			</div>
+    	</div>
+	</div>
+	<div id="myModal" class="modal" tabindex="-1" role="dialog">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title">You're going to play with this image</h5>
+
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body row">
+	        <div class="col-md-6 mx-auto">
+		  		<div class="choiced_img">
+		  			<img id="preview_img" src="#" class="crop d-none" alt="vasuluna">
+		  		</div>
+		  	</div>
+	      </div>
+	      <div class="modal-footer">
+	      	<h6 class="d-none">(Just hover mouse on image)</h6>
+	      	<button type="button" class="btn btn-success d-none download pulse">
+	      		<a href="javascript:void(0)" data-dismiss="modal" id="play">Play</a>
+	      	</button>
+	        <button id="startCrop" type="button" class="btn btn-primary pulse">Start crop</button>
+	        <button id="other_image" type="button" class="btn btn-secondary pulse2" data-dismiss="modal">Return back</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<div style="display: none" class="canvas_box z_top">
+		<div class="oneMoreTime">
+			<h4>You just made full puzzle! Please, subscribe to me</h4>
+			<ul class="links">
+			  <a href="https://www.facebook.com/profile.php?id=100009032005541"><li class="social-share facebook"><img src="./img/icons/fa.png" alt="Share Page on Facebook" /></li></a>
+			  <a href="https://twitter.com/Stepan39818464"><li class="social-share twitter"><img src="./img/icons/tw.png" alt="Share Page on Twitter" /></li></a>
+			  <a href="https://www.linkedin.com/in/stepan-botsko-44199b19a/"><li class="social-share linkedin"><img src="./img/icons/lin.png" alt="Share Page on LinkedIn" /></li></a>
+			  <a href="https://vk.com/id233660380"><li class="social-share vkontakte"><img src="./img/icons/vk.png" alt="Share Page on Vkontakte" /></li></a>
+			  <a href="https://t.me/Stepan_1969"><li class="social-share telegram"><img src="./img/icons/tg.png" alt="Share Page on Telegram" /></li></a>
+			</ul>
+			<span class="mx-auto">Play Again</span>
+		</div>
+        <canvas id="canvas"></canvas>
+    </div>
+    <div id="field_wrapper" class="field_wrapper">
+		<div id="gamefield">
+		    <div id="droparea">
+		    	<div class="target_image"></div>
+			    <table border="0" cellpadding="0" cellspacing="0">
+			        <tbody data-number="3">
+				        <tr>
+				            <td><div id="drop1" class="droppable ui-droppable"><span>1</span></div></td>
+				            <td><div id="drop2" class="droppable ui-droppable"><span>2</span></div></td>
+				            <td><div id="drop3" class="droppable ui-droppable"><span>3</span></div></td>
+				        </tr>
+				        <tr>
+				        	<td><div id="drop4" class="droppable ui-droppable"><span>4</span></div></td>
+				            <td><div id="drop5" class="droppable ui-droppable"><span>5</span></div></td>
+					        <td><div id="drop6" class="droppable ui-droppable"><span>6</span></div></td>
+				        </tr>
+			        	<tr>
+			        	    <td><div id="drop7" class="droppable ui-droppable"><span>7</span></div></td>
+		        	        <td><div id="drop8" class="droppable ui-droppable"><span>8</span></div></td>
+		        	        <td><div id="drop9" class="droppable ui-droppable"><span>9</span></div></td>
+			        	</tr>
+			    	</tbody>
+			    	<tbody data-number="4" class="d-none">
+				        <tr>
+				            <td><div id="drop101" class="droppable ui-droppable"><span>1</span></div></td>
+				            <td><div id="drop102" class="droppable ui-droppable"><span>2</span></div></td>
+				            <td><div id="drop103" class="droppable ui-droppable"><span>3</span></div></td>
+				            <td><div id="drop104" class="droppable ui-droppable"><span>4</span></div></td>
+				        </tr>
+				        <tr>
+				        	<td><div id="drop105" class="droppable ui-droppable"><span>5</span></div></td>
+					        <td><div id="drop106" class="droppable ui-droppable"><span>6</span></div></td>
+		                    <td><div id="drop107" class="droppable ui-droppable"><span>7</span></div></td>
+		        	        <td><div id="drop108" class="droppable ui-droppable"><span>8</span></div></td>
+				        </tr>
+			        	<tr>
+			        		<td><div id="drop109" class="droppable ui-droppable"><span>9</span></div></td>
+		                    <td><div id="drop110" class="droppable ui-droppable"><span>10</span></div></td>
+			        	    <td><div id="drop111" class="droppable ui-droppable"><span>11</span></div></td>
+			        	    <td><div id="drop112" class="droppable ui-droppable"><span>12</span></div></td>
+			        	</tr>
+			        	<tr>
+			        		<td><div id="drop113" class="droppable ui-droppable"><span>13</span></div></td>
+			        		<td><div id="drop114" class="droppable ui-droppable"><span>14</span></div></td>
+			        		<td><div id="drop115" class="droppable ui-droppable"><span>15</span></div></td>
+			        	    <td><div id="drop116" class="droppable ui-droppable"><span>16</span></div></td>
+			        	</tr>
+			    	</tbody>
+			    	<tbody data-number="5" class="d-none">
+				        <tr>
+				            <td><div id="drop201" class="droppable ui-droppable"><span>1</span></div></td>
+				            <td><div id="drop202" class="droppable ui-droppable"><span>2</span></div></td>
+				            <td><div id="drop203" class="droppable ui-droppable"><span>3</span></div></td>
+				            <td><div id="drop204" class="droppable ui-droppable"><span>4</span></div></td>
+				            <td><div id="drop205" class="droppable ui-droppable"><span>5</span></div></td>
+				        </tr>
+				        <tr>
+					        <td><div id="drop206" class="droppable ui-droppable"><span>6</span></div></td>
+		                    <td><div id="drop207" class="droppable ui-droppable"><span>7</span></div></td>
+		        	        <td><div id="drop208" class="droppable ui-droppable"><span>8</span></div></td>
+		        	        <td><div id="drop209" class="droppable ui-droppable"><span>9</span></div></td>
+		                    <td><div id="drop210" class="droppable ui-droppable"><span>10</span></div></td>
+				        </tr>
+			        	<tr>
+			        	    <td><div id="drop211" class="droppable ui-droppable"><span>11</span></div></td>
+			        	    <td><div id="drop212" class="droppable ui-droppable"><span>12</span></div></td>
+			        	    <td><div id="drop213" class="droppable ui-droppable"><span>13</span></div></td>
+			        	    <td><div id="drop214" class="droppable ui-droppable"><span>14</span></div></td>
+			        	    <td><div id="drop215" class="droppable ui-droppable"><span>15</span></div></td>
+			        	</tr>
+			        	<tr>
+			        	    <td><div id="drop216" class="droppable ui-droppable"><span>16</span></div></td>
+			        	    <td><div id="drop217" class="droppable ui-droppable"><span>17</span></div></td>
+			        	    <td><div id="drop218" class="droppable ui-droppable"><span>18</span></div></td>
+			        	    <td><div id="drop219" class="droppable ui-droppable"><span>19</span></div></td>
+			        	    <td><div id="drop220" class="droppable ui-droppable"><span>20</span></div></td>
+			        	</tr>
+			        	<tr>
+			        	    <td><div id="drop221" class="droppable ui-droppable"><span>21</span></div></td>
+			        	    <td><div id="drop222" class="droppable ui-droppable"><span>22</span></div></td>
+			        	    <td><div id="drop223" class="droppable ui-droppable"><span>23</span></div></td>
+			        	    <td><div id="drop224" class="droppable ui-droppable"><span>24</span></div></td>
+			        	    <td><div id="drop225" class="droppable ui-droppable"><span>25</span></div></td>
+			        	</tr>
+			    	</tbody>
+				</table>
+			</div>  
+	        <div class="wrap_icon">
+				<div class="bg_size quantity1"></div><div class="bg_size quantity2"></div><div class="bg_size quantity3"></div> <div class="bg_size quantity4"></div><div class="bg_size quantity5"></div><div class="bg_size quantity6"></div><div class="bg_size quantity7"></div><div class="bg_size quantity8"></div><div class="bg_size quantity9"></div><div class="bg_size quantity10"></div><div class="bg_size quantity11"></div><div class="bg_size quantity12"></div><div class="bg_size quantity13"></div><div class="bg_size quantity14"></div><div class="bg_size quantity15"></div><div class="bg_size quantity16"></div><div class="bg_size quantity17"></div><div class="bg_size quantity18"></div><div class="bg_size quantity19"></div><div class="bg_size quantity20"></div><div class="bg_size quantity21"></div><div class="bg_size quantity22"></div><div class="bg_size quantity23"></div><div class="bg_size quantity24"></div><div class="bg_size quantity25"></div>
+	        </div>
+		</div>
+	</div>
+
+
+	<!-- Bootstrap plugin -->
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<!-- Jquerry UI plugin -->
+	<script type="text/javascript" src="js/jquery-ui.js"></script>
+	<script src='./js/ui.js'></script>
+	<!-- Confetti JS -->
+	<script src='./js/confetti.js'></script>
+	<!-- Crop JS -->
+	<script src="http://acornejo.github.io/jquery-cropbox/jquery.cropbox.js"></script>	
+	<!-- Main JS file -->
+	<script src="./js/main.js"></script>
+
+</body>
+</html>
